@@ -448,7 +448,7 @@ def replace_chars_2(text, mapping=roma_mapper_plus_2):
 
 
 def replace_tashdid_2(s):
-    vowels = 'aiueoɯ0123456789.?!_。؟？！．．．＠@＃#＄$％%＾^＆&＊*（)(）_+=[「」]></\`~～―ー∺"'
+    vowels = 'aiueoɯ0123456789.?!_。؟？！．．．＠@＃#＄$％%＾^＆&＊*（)(）_+=[「」]></\\`~～―ー∺"'
     result = []
     
     i = 0
@@ -1119,5 +1119,3 @@ def random_space_fix(text):
         text = text.replace(k, v)
         
     return fix_wagas(text)
-
-    
