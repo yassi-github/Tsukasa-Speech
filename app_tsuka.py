@@ -629,4 +629,4 @@ with gr.Blocks(title="Tsukasa 司", css=custom_css + "footer{display:none !impor
                        ['Kotodama Text Inference', 'Voice-guided Inference','Prompt-guided Inference [Highly Experimental - not optimized]', 'Read Me! [English]', 'Read Me! [日本語]'])
 
 if __name__ == "__main__":
-    demo.queue(api_open=False, max_size=15).launch(show_api=False, share=True)
+    demo.queue(api_open=False, max_size=15).launch(show_api=False, share=False)
