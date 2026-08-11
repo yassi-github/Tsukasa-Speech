@@ -162,6 +162,12 @@ def LongformSynth_Text(text, s_prev=None, Kotodama=None, alpha=.0, beta=0, t=.8,
     else:
         raw_jpn = japanese
         speaker = ""
+
+
+    # preprocess(convert romaji to katakana)
+    import prepro
+    raw_jpn = prepro.Prepro_text(raw_jpn)
+
         
     sentences = importable.sent_tokenizer.tokenize(raw_jpn)
     sentences = importable.merging_sentences(sentences)
