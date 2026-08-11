@@ -1,0 +1,19 @@
+services:
+  tsukasa-speech:
+    build:
+      context: .
+    image: localhost/tsukasa-speech:latest
+    runtime: nvidia
+    ports:
+      - "7860:7860"
+    volumes:
+      - ${HOME}/nltk_data:/home/user/nltk_data
+      - ${HOME}/.cache:/home/user/.cache
+    environment:
+      GRADIO_SERVER_NAME: 0.0.0.0
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:7860/"]
+      interval: 10s
+      timeout: 5s
+      retries: 6
+      start_period: 30s
