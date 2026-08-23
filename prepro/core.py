@@ -56,7 +56,7 @@ def Prepro_text(text: str) -> str:
 
     # 数値は漢数字に
     # (2026 -> 二千二十六)
-    text = re.sub(r'[1-9][0-9,]+', convert2kansuuji_matched_number, text)
+    text = re.sub(r'[0-9][0-9,]?+', convert2kansuuji_matched_number, text)
 
     # 残したい文字以外を消す
     # \u3040-\u309F: ひらがな, \u30A0-\u30FF: カタカナ, \u4E00-\u9FFF: cjk統合漢字
