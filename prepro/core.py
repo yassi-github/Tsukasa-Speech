@@ -3,10 +3,46 @@ import unicodedata, re, num2words
 def romaji2katakana(text: str) -> str:
     import re
     from e2k import C2K
-    def to_katakana(match):
+    def to_katakana(match) -> str:
         c2k = C2K()
         return c2k(match.group().lower())
-    return re.sub(r'[a-zA-Z]{2,}', to_katakana, text)
+    text = re.sub(r'[a-zA-Z]{2,}', to_katakana, text)
+
+    def single_alphabet_to_katakana(match) -> str:
+        table = {
+            "A": "エー",
+            "B": "ビー",
+            "C": "シー",
+            "D": "ディー",
+            "E": "イー",
+            "F": "エフ",
+            "G": "ジー",
+            "H": "エイチ",
+            "I": "アイ",
+            "J": "ジェー",
+            "K": "ケー",
+            "L": "エル",
+            "M": "エム",
+            "N": "エヌ",
+            "O": "オー",
+            "P": "ピー",
+            "Q": "キュー",
+            "R": "アール",
+            "S": "エス",
+            "T": "ティー",
+            "U": "ユー",
+            "V": "ブイ",
+            "W": "ダブル",
+            "X": "エックス",
+            "Y": "ワイ",
+            "Z": "ゼット",
+        }
+        text = match.group().upper()
+        for k, v in table.items():
+            text = text.replace(k, f" {v} ")
+        return text
+    text = re.sub(r'[a-zA-Z]', single_alphabet_to_katakana, text)
+    return text
 
 def convert2kansuuji(num_str: str) -> str:
     trans = str.maketrans('0123456789', '〇一二三四五六七八九')
