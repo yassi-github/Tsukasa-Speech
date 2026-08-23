@@ -6,13 +6,15 @@ services:
     runtime: nvidia
     ports:
       - "7860:7860"
+    working_dir: ${PWD}
     volumes:
+      - ${PWD}:${PWD}
       - ${HOME}/nltk_data:/home/user/nltk_data
       - ${HOME}/.cache:/home/user/.cache
     environment:
       GRADIO_SERVER_NAME: 0.0.0.0
     healthcheck:
-      test: ["CMD", "curl", "-f", "http://localhost:7860/"]
+      test: ["CMD", "uv", "run", "python", "-c", "import urllib.request as u,sys; sys.exit(0) if u.urlopen('http://localhost:7860/',timeout=3).status==200 else sys.exit(1)"]
       interval: 10s
       timeout: 5s
       retries: 6
